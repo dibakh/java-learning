@@ -1,21 +1,31 @@
 package reflection.week08;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class Thermostat {
+public abstract class Thermostat {
 
-    public String skiing(double tempInCelsius) {
-        return getMessage(tempInCelsius, n -> n > 0);
+    private Predicate<Double> condition;
+    private Function<Double, String> display;
+
+    public Thermostat(Predicate<Double> condition, Function<Double, String> display) {
+        this.condition = condition;
+        this.display = display;
     }
 
-    public String sauna(double tempInCelsius) {
-        return getMessage(tempInCelsius, n -> n < 80);
+    public Predicate<Double> getCondition() {
+        return condition;
     }
 
-    private String getMessage(double tempInCelsius, Predicate<String>) {
-        if (b) {
-            return tempInCelsius + s;
+    public Function<Double, String> getDisplay() {
+        return display;
+    }
+
+    public String sense(Double temperature) {
+        String message = getDisplay().apply(temperature);
+        if (getCondition().test(temperature)) {
+            message = "Warning!";
         }
-        return "WARNING !!!";
+        return message;
     }
 }
