@@ -17,12 +17,12 @@ public abstract class Thermostat {
         return condition;
     }
 
-    public Function<Double, String> getDisplay() {
+    public Function<Double, String> display() {
         return display;
     }
 
     public String sense(Double temperature) {
-        String message = getDisplay().apply(temperature);
+        String message = display().apply(temperature);
         if (getCondition().test(temperature)) {
             message = "Warning!";
         }
