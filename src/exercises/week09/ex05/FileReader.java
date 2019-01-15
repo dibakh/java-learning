@@ -1,4 +1,4 @@
-package exercises.week09.ex02;
+package exercises.week09.ex05;
 
 import java.io.IOException;
 import java.net.URI;
