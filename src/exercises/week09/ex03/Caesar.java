@@ -4,7 +4,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Caesar {
-
     private static final int NUMBER_OF_LETTERS = 26;
     public static final int SMALL_A_ASCII_CODE = 97;
     public static final int Big_A_Ascii_Code = 65;
