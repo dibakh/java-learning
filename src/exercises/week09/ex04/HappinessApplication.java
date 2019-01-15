@@ -12,6 +12,6 @@ public class HappinessApplication {
                 .map(e -> new HappinessRecord(e[0], Integer.valueOf(e[1]), Double.valueOf(e[2])))
                 .sorted(Comparator.comparing(HappinessRecord::getRank))
                 .limit(5)
-                .forEach(e -> System.out.println("Rank: "+e.getRank()+" | Country: "+e.getCountry()+" | Score: "+e.getScore()));
+                .forEach(e -> System.out.println("Rank: " + e.getRank() + " | Country: " + e.getCountry() + " | Score: " + e.getScore()));
     }
 }
