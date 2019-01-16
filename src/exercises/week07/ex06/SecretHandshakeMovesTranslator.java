@@ -1,6 +1,6 @@
 package exercises.week07.ex06;
 
-import ex04.NumberSplitter;
+import exercises.week07.ex04.NumberSplitter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
