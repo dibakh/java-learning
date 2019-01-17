@@ -1,4 +1,4 @@
-package exercises.week04.ex12;
+package exercises.week04;
 
 
 public class HappinessRecord {

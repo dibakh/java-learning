@@ -2,47 +2,68 @@ package exercises.week09.ex01;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamsApplication {
     public static void main(String[] args) {
+        List<Integer> numbers = getNumbers();
+        displayEvenNumbers(numbers);
+        displayOddNumbers(numbers);
+        displayNumbersMoreThan10divisibleBy3(numbers);
+        displayNumbersSmallerThan5MultipliedBy3(numbers);
+        displayNumbersBetween8to12(numbers);
+    }
+
+    private static List<Integer> getNumbers() {
         List<Integer> numbers = new ArrayList<>();
         for (int position = 1; position <= 20; position++) {
             numbers.add(position);
         }
-        System.out.println(numbers);
+        return numbers;
+    }
 
+    private static void displayEvenNumbers(List<Integer> numbers) {
         List<Integer> evenNumbers = numbers.stream()
                 .filter(e -> e % 2 == 0)
                 .collect(Collectors.toList());
+        System.out.println("Even numbers:");
         System.out.println(evenNumbers);
+    }
 
-        List<Integer> oddNumbers = numbers.stream()
+    private static void displayOddNumbers(List<Integer> numbers) {
+        List<Integer> displayOddNumbers = numbers.stream()
                 .filter(e -> e % 2 == 1)
                 .collect(Collectors.toList());
-        System.out.println(oddNumbers);
+        System.out.println("Odd numbers:");
+        System.out.println(displayOddNumbers);
+    }
 
-        List<Integer> divisibleByThree = numbers.stream()
-                .filter(e -> e < 10)
+    private static void displayNumbersMoreThan10divisibleBy3(List<Integer> numbers) {
+        List<Integer> displayNumbersMoreThan10divisibleBy3 = numbers.stream()
+                .filter(e -> e > 10)
                 .filter(e -> e % 3 == 0)
                 .collect(Collectors.toList());
-        System.out.println(divisibleByThree);
+        System.out.println("Numbers divisible by 3 and bigger than 10:");
+        System.out.println(displayNumbersMoreThan10divisibleBy3);
+    }
 
-        numbers.stream()
+    private static void displayNumbersSmallerThan5MultipliedBy3(List<Integer> numbers) {
+        List<Integer> smallerThan5MultipliedBy3 = numbers.stream()
                 .filter(e -> e < 5)
                 .map(e -> e * 3)
                 .collect(Collectors.toList());
+        System.out.println("Numbers smaller than 5 and multiplied by 3:");
+        System.out.println(smallerThan5MultipliedBy3);
+    }
 
-        List<Integer> collectedNumbers = numbers.stream()
+    private static void displayNumbersBetween8to12(List<Integer> numbers) {
+        List<String> collectedNumbers = numbers.stream()
                 .filter(e -> e > 8)
                 .filter(e -> e < 12)
+                .map(e -> e.toString())
+                .map(e -> "number " + e + " has " + e.length() + " digits")
                 .collect(Collectors.toList());
-
-        collectedNumbers.stream()
-                .forEach(e-> System.out.println("number "+e+" has "+String.valueOf(e).length()+" digits"));
-
-
+        System.out.println("\nDigits of numbers bigger than 8 and smaller than 12:");
+        System.out.println(collectedNumbers);
     }
 }
