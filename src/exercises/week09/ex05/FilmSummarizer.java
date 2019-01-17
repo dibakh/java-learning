@@ -8,16 +8,16 @@ public class FilmSummarizer {
     List<Film> films = new FilmReader().getFilms();
 
     public void analyseData() {
-        top3HighestRaitingSortedByRating();
-        top3longer3hoursSortedByRate();
-        top4MoreExpensiveSortedByBudget();
-        top4mostExpensiveShorterThan90SortedByBudget();
-        top4MostRatedOver7LimitedBudgetSortedByBudget();
-        top5MostRatedEarnedMore10MilionLongerThan2Hours();
-        top3MostPopularVotedMoreThan10MilionSrtedByRate();
+        displayTop3HighestRaitingSortedByRating();
+        displayTop3longer3hoursSortedByRate();
+        displayTop4MoreExpensiveSortedByBudget();
+        displayTop4mostExpensiveShorterThan90SortedByBudget();
+        displayTop4MostRatedOver7LimitedBudgetSortedByBudget();
+        displayTop5MostRatedEarnedMore10MilionLongerThan2Hours();
+        displayTop3MostPopularVotedMoreThan10MilionSrtedByRate();
     }
 
-    private void top3HighestRaitingSortedByRating() {
+    private void displayTop3HighestRaitingSortedByRating() {
         List<String> collect = films.stream()
                 .sorted(Comparator.comparing(Film::getScore).reversed())
                 .limit(3)
@@ -28,7 +28,7 @@ public class FilmSummarizer {
         System.out.println(collect);
     }
 
-    private void top3longer3hoursSortedByRate() {
+    private void displayTop3longer3hoursSortedByRate() {
         List<String> collect = films.stream()
                 .filter(film -> film.getRuntime() > 180)
                 .sorted(Comparator.comparing(Film::getScore).reversed())
@@ -40,7 +40,7 @@ public class FilmSummarizer {
         System.out.println(collect);
     }
 
-    private void top4MoreExpensiveSortedByBudget() {
+    private void displayTop4MoreExpensiveSortedByBudget() {
         List<String> collect = films.stream()
                 .sorted(Comparator.comparing(Film::getBudget).reversed())
                 .limit(4)
@@ -51,7 +51,7 @@ public class FilmSummarizer {
         System.out.println(collect);
     }
 
-    private void top4mostExpensiveShorterThan90SortedByBudget() {
+    private void displayTop4mostExpensiveShorterThan90SortedByBudget() {
         List<String> collect = films.stream()
                 .filter(film -> film.getRuntime() < 90)
                 .sorted(Comparator.comparing(Film::getBudget).reversed())
@@ -63,7 +63,7 @@ public class FilmSummarizer {
         System.out.println(collect);
     }
 
-    private void top4MostRatedOver7LimitedBudgetSortedByBudget() {
+    private void displayTop4MostRatedOver7LimitedBudgetSortedByBudget() {
         List<String> collect = films.stream()
                 .filter(film -> film.getScore() > 7)
                 .filter(film -> film.getBudget() > 50000)
@@ -76,7 +76,7 @@ public class FilmSummarizer {
         System.out.println(collect);
     }
 
-    private void top5MostRatedEarnedMore10MilionLongerThan2Hours() {
+    private void displayTop5MostRatedEarnedMore10MilionLongerThan2Hours() {
         List<String> collect = films.stream()
                 .filter(film -> film.getRuntime() > 120)
                 .filter(film -> film.getRevenue() > 100000000)
@@ -89,7 +89,7 @@ public class FilmSummarizer {
         System.out.println(collect);
     }
 
-    private void top3MostPopularVotedMoreThan10MilionSrtedByRate() {
+    private void displayTop3MostPopularVotedMoreThan10MilionSrtedByRate() {
         List<String> collect = films.stream()
                 .filter(film -> film.getVoteCount() > 10000)
                 .sorted(Comparator.comparing(Film::getScore).reversed())
