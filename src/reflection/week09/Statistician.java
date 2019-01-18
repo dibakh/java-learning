@@ -1,15 +1,13 @@
 package reflection.week09;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Statistician {
     StudentReader studentReader = new StudentReader();
     private List<Student> students = studentReader.getStudents();
 
-    public void calculeate() {
+    public void calculate() {
         displayHowManyBoysOrGirls();
         displayParentalLevelOfEducationAlphabetically();
         displayHowManyStudentsScoredHigherthan90();
@@ -31,15 +29,16 @@ public class Statistician {
     }
 
     private void displayParentalLevelOfEducationAlphabetically() {
-        Set<String> levelOfEducationAlphabetically = students.stream()
-                .sorted(Comparator.comparing(Student::getParentalLevelOfEducation).reversed())
+        List<String> levelOfEducationAlphabetically = students.stream()
+//                .sorted(Comparator.comparing(Student::getParentalLevelOfEducation).reversed())
                 .map(student -> student.getParentalLevelOfEducation())
-                .collect(Collectors.toSet());
+//                .distinct()
+                .collect(Collectors.toSet()).stream()
+                .sorted()
+                .collect(Collectors.toList());
 
         // set is unordered data structor
         System.out.println("Parental education levels sorted alphabetically:" + levelOfEducationAlphabetically);
-
-
     }
 
     private void displayHowManyStudentsScoredHigherthan90() {
@@ -51,7 +50,6 @@ public class Statistician {
 
         System.out.println("Number of students with scores higher than 90: " + scoreMoreThan90);
     }
-
 
     private void displayScored100WhitTheirGenders() {
         List<String> genders = students.stream()
