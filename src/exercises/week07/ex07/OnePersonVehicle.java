@@ -1,7 +1,7 @@
 package exercises.week07.ex07;
 
-public class Vehicle1 extends Vehicle {
-    public Vehicle1() {
+public class OnePersonVehicle extends Vehicle {
+    public OnePersonVehicle() {
 
         super(1);
     }
