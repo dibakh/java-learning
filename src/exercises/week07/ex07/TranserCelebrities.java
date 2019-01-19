@@ -1,22 +1,19 @@
 package exercises.week07.ex07;
 
-public class transerCelebrities {
-    FivePersonVehicles fivePersonVehicles = new FivePersonVehicles();
-    OnePeronVehicles onePeronVehicles = new OnePeronVehicles();
+import java.util.List;
 
-    public Boolean transport(Integer numberOfOnePersonVehicles, Integer numberOfFivePersonVehicles, Integer numberOfCelebrities) {
-        if (fivePersonVehicles.checkIfItsPossible(numberOfFivePersonVehicles, numberOfCelebrities)) {
-            numberOfCelebrities= calculateRemainedCelebrities(numberOfCelebrities);
-            if (onePeronVehicles.checkIfItsPossible(numberOfCelebrities,numberOfOnePersonVehicles)){
-                return true;
+public class TranserCelebrities {
+    public Boolean transport(Integer numberOfCelebrities, Integer numberOfFivePersonVehicles, Integer numberOfOnePersonVehicles) {
+
+        List<Vehicle> vehicles = new Vehicles().getVehicles(numberOfFivePersonVehicles, numberOfOnePersonVehicles);
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.canCarry(numberOfCelebrities)) {
+                numberOfCelebrities = vehicle.calculateRemainedCelebrities(numberOfCelebrities);
             }
-
         }
-        return false;
+        if (numberOfCelebrities > 0) {
+            return false;
+        }
+        return true;
     }
-
-    private Integer calculateRemainedCelebrities(Integer numberOfCelebrities) {
-       return numberOfCelebrities % fivePersonVehicles.capacity;
-    }
-
 }
