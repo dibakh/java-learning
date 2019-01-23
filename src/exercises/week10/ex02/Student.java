@@ -1,4 +1,4 @@
-package reflection.week09;
+package exercises.week10.ex02;
 
 public class Student {
     private String gender;
