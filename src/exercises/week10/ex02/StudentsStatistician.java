@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 
 public class StudentsStatistician {
     public static void main(String[] args) {
-        StudentReader studentReader = new StudentReader();
-        List<Student> students = studentReader.getStudents();
+        List<Student> students = new StudentReader().getStudents();
 
         System.out.println("How manyucation times does each parent level of education appear? ");
         Map<String, Long> groupedByParentEducation = displayHowManyTimesEacstudentshParentLevelOfEducationAppear(students);
