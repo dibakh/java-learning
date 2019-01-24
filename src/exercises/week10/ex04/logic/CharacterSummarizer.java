@@ -1,6 +1,7 @@
-package exercises.week10.ex04;
+package exercises.week10.ex04.logic;
 
 import exercises.week10.ex04.model.Character;
+import exercises.week10.ex04.parser.CharacterParser;
 
 import java.util.List;
 import java.util.Map;
@@ -8,88 +9,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CharacterSummarizer {
-//    public static void main(String[] args) {
-//        List<Character> lines = new CharacterReader().getLines();
-//
-//        long numberOfCharacters = displayTotalCharInBook(lines);
-//        System.out.println("\nHow many characters appear in the books in total? " + numberOfCharacters);
-//
-//        long numberOfDeath = displayNumberOfDeadChar(lines);
-//        System.out.println("\nHow many characters died? " + numberOfDeath);
-//
-//        String message = displayPercantageOfDeathManAndWoman(lines, numberOfDeath);
-//        System.out.println("\n" + message);
-//
-//        Optional<Map.Entry<String, Long>> first = displayBookWithHighestDeath(lines);
-//        if (first.isPresent()) {
-//            System.out.println("\nbook " + first.get().getKey() + " has " + first.get().getValue() + " death.");
-//        }
-//
-//        String collectedNames = displayWhoIsDeadInBookOfHighestDead(lines, first.get().getKey());
-//        System.out.println("\nDeath people in book " + first.get().getKey() +" : ");
-//        System.out.println(collectedNames);
-//
-//
-//
-//        String allegiances = displayTwoAllegiancesWithHighestDead(lines);
-//        System.out.println("\nWhich ones are the two allegiances that have the biggest dead count?");
-//        System.out.println(allegiances);
-//
-//
-//        Optional<Map.Entry<String, Long>> bookWithMostdeadFromStark = displayBookWithMostdeadFromStarkAllegiance(lines);
-//        System.out.print("\nIn which book die the most amount of characters from the Stark allegiance? ");
-//        System.out.println(bookWithMostdeadFromStark.get().getKey());
-//    }
+    List<Character> lines = new CharacterParser().getLines();
 
-    public Optional<Map.Entry<String, Long>>  displayBookWithMostdeadFromStarkAllegiance(List<Character> lines) {
-        return lines.stream()
-                .filter(e -> !e.getDeathYear().isEmpty())
-                .filter(e -> "Stark".equals(e.getAllegiances()))
-                .collect(Collectors.groupingBy(e -> e.getBookOfDeath(), Collectors.counting()))
-                .entrySet().stream()
-                .sorted((e1,e2)->e2.getValue().compareTo(e1.getValue()))
-                .findFirst();
-    }
-
-    public String displayTwoAllegiancesWithHighestDead(List<Character> lines) {
-        return lines.stream()
-                .filter(e->!e.getDeathYear().isEmpty())
-                .collect(Collectors.groupingBy(e->e.getAllegiances(),Collectors.counting()))
-                .entrySet().stream()
-                .sorted((e1,e2)->e2.getValue().compareTo(e1.getValue()))
-                .limit(2)
-                .map(e->e.getKey() + " " + e.getValue())
-                .collect(Collectors.joining("\n"));
-    }
-
-    public String displayWhoIsDeadInBookOfHighestDead(List<Character> lines, String key) {
-        return lines.stream()
-                .filter(e -> e.getBookOfDeath().equals(key))
-                .map(e -> e.getName())
-                .collect(Collectors.joining("\n "));
-    }
-
-    public Optional<Map.Entry<String, Long>> displayBookWithHighestDeath(List<Character> lines) {
-        return lines.stream()
-                .filter(e -> !e.getDeathYear().isEmpty())
-                .collect(Collectors.groupingBy(e -> e.getBookOfDeath(), Collectors.counting()))
-                .entrySet().stream()
-                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
-                .findFirst();
-    }
-
-    public long displayTotalCharInBook(List<Character> lines) {
+    public long getTotalCharInBook() {
         return lines.stream()
                 .count();
     }
 
-    public long displayNumberOfDeadChar(List<Character> lines) {
+    public long getNumberOfDeadChar() {
         return lines.stream()
                 .filter(e -> !e.getDeathYear().isEmpty())
                 .count();
     }
 
-    public String displayPercantageOfDeathManAndWoman(List<Character> lines, long numberOfDeath) {
+    public String getPercantageOfDeathManAndWoman(long numberOfDeath) {
         return lines.stream()
                 .filter(e -> !e.getDeathYear().isEmpty())
                 .map(Character::getGender)
@@ -103,9 +36,84 @@ public class CharacterSummarizer {
                 .collect(Collectors.joining("\n"));
     }
 
-//In which book die the most amount of characters from the Lannister allegiance?
-//How many Starks have died?
-//How many Lannisters have died?
-//Is there any character who didn’t die?
-//Has any character ever been killed in the same chapter that it got introduced?
+    public Optional<Map.Entry<String, Long>> getBookWithMostdeadFromStarkAllegiance() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .filter(e -> "Stark".equals(e.getAllegiances()))
+                .collect(Collectors.groupingBy(e -> e.getBookOfDeath(), Collectors.counting()))
+                .entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .findFirst();
+    }
+
+    public String getTwoAllegiancesWithHighestDead() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .collect(Collectors.groupingBy(e -> e.getAllegiances(), Collectors.counting()))
+                .entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .limit(2)
+                .map(e -> e.getKey() + " " + e.getValue())
+                .collect(Collectors.joining("\n"));
+    }
+
+    public String getWhoIsDeadInBookOfHighestDead(String key) {
+        return lines.stream()
+                .filter(e -> e.getBookOfDeath().equals(key))
+                .map(e -> e.getName())
+                .collect(Collectors.joining("\n "));
+    }
+
+    public Optional<Map.Entry<String, Long>> getBookWithHighestDeath() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .collect(Collectors.groupingBy(e -> e.getBookOfDeath(), Collectors.counting()))
+                .entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .findFirst();
+    }
+
+    public Optional<Map.Entry<String, Long>> getBookWhichHasMostDeadFromLannister() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .filter(e -> "Lannister".equals(e.getAllegiances()))
+                .collect(Collectors.groupingBy(Character::getBookOfDeath, Collectors.counting()))
+                .entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .findFirst();
+    }
+
+    public String getPercantageOfNobilityChar() {
+        long numberOfNobilityChar = lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .filter(e -> "1".equals(e.getNobility()))
+                .count();
+        long totalDeadChar = getNumberOfDeadChar();
+        return (numberOfNobilityChar * 100) / totalDeadChar + "%";
+    }
+
+    public long getNumberOfDeadStark() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .filter(e -> "Stark".equals(e.getAllegiances()))
+                .count();
+    }
+
+    public long getNumberOfDeadLannisters() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .filter(e -> "Lannister".equals(e.getAllegiances()))
+                .count();
+    }
+
+    public Boolean isThereAnyAliveChar() {
+        return lines.stream()
+                .anyMatch(e -> e.getDeathYear().isEmpty());
+    }
+
+    public Boolean isThereAnyIntroducedAndDeadInSameChapter() {
+        return lines.stream()
+                .filter(e -> !e.getDeathYear().isEmpty())
+                .anyMatch(e -> e.getBookIntroChapter().equals(e.getDeathChapter()));
+    }
 }
