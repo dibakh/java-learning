@@ -1,4 +1,4 @@
-package exercises.week10.ex04;
+package exercises.week10.ex04.parser;
 
 import exercises.week09.ex02.FileReader;
 import exercises.week10.ex04.model.Character;
@@ -6,9 +6,9 @@ import exercises.week10.ex04.model.Character;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CharacterReader {
+public class CharacterParser {
     public List<Character> getLines() {
-        return new FileReader().asStream("exercises/week10/ex04/got-characters.csv")
+        return new FileReader().asStream("exercises/week10/ex04/resource/got-characters.csv")
                 .skip(1)
                 .map(e -> e.split(";"))
                 .map(e -> new Character(
