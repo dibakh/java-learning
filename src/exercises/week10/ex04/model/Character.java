@@ -1,4 +1,4 @@
-package exercises.week10.ex04;
+package exercises.week10.ex04.model;
 
 public class Character {
     private String name;
