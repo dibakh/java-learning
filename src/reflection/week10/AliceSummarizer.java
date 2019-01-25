@@ -13,6 +13,7 @@ public class AliceSummarizer {
         return lines.stream()
                 .map(e -> e.split(" "))
                 .flatMap(Stream::of)
+                .filter(e -> !e.isEmpty())
                 .count();
     }
 
@@ -20,6 +21,7 @@ public class AliceSummarizer {
         return lines.stream()
                 .map(e -> e.split(" "))
                 .flatMap(Stream::of)
+                .filter(e -> !e.isEmpty())
                 .distinct()
                 .count();
 
@@ -27,9 +29,14 @@ public class AliceSummarizer {
 
     public Optional<String> getLongestWords() {
         return lines.stream()
-                .map(e -> e.split(" "))
+                .map(e->e.split(" "))
                 .flatMap(Stream::of)
-//                .sorted((e1, e2) -> e2.length().compareTo(e1.length()))
+                .filter(e -> !e.isEmpty())
+                .collect(Collectors.groupingBy(e -> e.length(), Collectors.toList()))
+                .entrySet()
+                .stream()
+                .sorted((e1, e2) -> e2.getKey().compareTo(e1.getKey()))
+                .map(e -> e.getKey() + " " + e.getValue())
                 .findFirst();
     }
 
@@ -37,6 +44,7 @@ public class AliceSummarizer {
         return lines.stream()
                 .map(e -> e.split(" "))
                 .flatMap(Stream::of)
+                .filter(e -> !e.isEmpty())
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
                 .entrySet().stream()
                 .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
@@ -46,6 +54,8 @@ public class AliceSummarizer {
 
     public List<Map.Entry<String, Long>> get5MostAppearingLetter() {
         return lines.stream()
+                .map(e -> e.split(" "))
+                .flatMap(Stream::of)
                 .map(e -> e.split(""))
                 .flatMap(Stream::of)
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
@@ -56,10 +66,10 @@ public class AliceSummarizer {
     }
 
     public long getHowManyTimesAliceAppears() {
-                return lines.stream()
-                .map(e->e.split(" "))
+        return lines.stream()
+                .map(e -> e.split(" "))
                 .flatMap(Stream::of)
-                .map(e->"alice".equalsIgnoreCase(e))
+                .map(e -> "alice".equalsIgnoreCase(e))
                 .count();
     }
 }

@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class AliceReader {
     public List<String> getLine(){
         return new FileReader().asStream("reflection/week10/alice.txt")
-                .map(String::toLowerCase)
                 .map(e->e.replaceAll(","," "))
                 .map(e->e.replaceAll(";"," "))
                 .map(e->e.replaceAll("’s"," "))
@@ -19,12 +18,13 @@ public class AliceReader {
                 .map(e->e.replaceAll("#"," "))
                 .map(e->e.replaceAll("/"," "))
                 .map(e->e.replaceAll("-"," "))
-                .map(e->e.replaceAll(" \\."," "))
-                .map(e->e.replaceAll(" \\*"," "))
-                .map(e->e.replaceAll(" \\("," "))
-                .map(e->e.replaceAll(" \\)"," "))
-                .map(e->e.replaceAll(" \\["," "))
-                .map(e->e.replaceAll(" \\]"," "))
+                .map(e->e.replaceAll("\\."," "))
+                .map(e->e.replaceAll("\\*"," "))
+                .map(e->e.replaceAll("\\("," "))
+                .map(e->e.replaceAll("\\)"," "))
+                .map(e->e.replaceAll("\\["," "))
+                .map(e->e.replaceAll("\\]"," "))
+                .map(String::toLowerCase)
                 .collect(Collectors.toList());
     }
 }
