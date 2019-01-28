@@ -7,6 +7,7 @@ public class East implements Direction {
 
     @Override
     public String getName() {
+
         return name;
     }
 
@@ -22,16 +23,4 @@ public class East implements Direction {
         return "East";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        East east = (East) o;
-        return Objects.equals(name, east.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }
