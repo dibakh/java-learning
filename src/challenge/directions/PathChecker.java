@@ -1,24 +1,29 @@
 package challenge.directions;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PathChecker {
-    public List<Direction> dirReduc(List<Direction> directionsList) {
+    public Optional<List<Direction>> analyzePath(List<Direction> directions) {
 
-        int listSize = directionsList.size();
+        int listSize = directions.size();
+
+        if (listSize == 0) {
+            return Optional.empty();
+        }
+
+        if (listSize == 1){
+            return Optional.of(directions);
+        }
+
         int position = 0;
 
         while (position < listSize - 1) {
-            Direction direction1 = directionsList.get(position);
-            Direction direction2 = directionsList.get(position + 1);
-
-
-            if (areSameDirections(direction1, direction2)) {
-                directionsList.remove(position);
-            }
+            Direction direction1 = directions.get(position);
+            Direction direction2 = directions.get(position + 1);
 
             if (direction1.defeats(direction2)) {
-                directionsList = removeBothDirections(directionsList, position);
+                directions = removeBothDirections(directions, position);
                 if (position != 0) {
                     position--;
                 }
@@ -26,19 +31,15 @@ public class PathChecker {
                 position++;
             }
 
-            listSize = directionsList.size();
+            listSize = directions.size();
         }
 
-        return directionsList;
+        return Optional.of(directions);
     }
 
-    private List<Direction> removeBothDirections(List<Direction> directionsList, int position) {
-        directionsList.remove(position);
-        directionsList.remove(position);
-        return directionsList;
-    }
-
-    private boolean areSameDirections(Direction direction1, Direction direction2) {
-        return direction1.equals(direction2);
+    private List<Direction> removeBothDirections(List<Direction> directions, int position) {
+        directions.remove(position);
+        directions.remove(position);
+        return directions;
     }
 }
