@@ -18,10 +18,10 @@ class PathCheckerTest {
         List<Direction> directions = new ArrayList<>(
                 Arrays.asList(new North(), new South(), new East(), new West()));
 
-        Optional<List<Direction>> result = pathChecker.analyzePath(directions);
+        List<Direction> result = pathChecker.analyzePath(directions);
         Optional<List<Direction>> expected = Optional.of(new ArrayList<>());
 
-        Assertions.assertEquals(expected.get(), result.get());
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
@@ -29,9 +29,9 @@ class PathCheckerTest {
         List<Direction> directions = new ArrayList<>(
                 Arrays.asList(new North(), new East(), new West(), new South(), new South(), new West()));
 
-        Optional<List<Direction>> result = pathChecker.analyzePath(directions);
-        Optional<List<Direction>> expected = Optional.of( new ArrayList<>(Arrays.asList(new South(), new West())));
+        List<Direction> result = pathChecker.analyzePath(directions);
+        List<Direction> expected = new ArrayList<>(Arrays.asList(new South(), new West()));
 
-        Assertions.assertEquals(expected.get(), result.get());
+        Assertions.assertEquals(expected, result);
     }
 }
