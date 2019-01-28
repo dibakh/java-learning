@@ -20,6 +20,7 @@ public class Directions {
                 return Optional.of(direction);
             }
         }
+
         return Optional.empty();
     }
 
