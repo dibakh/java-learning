@@ -14,16 +14,16 @@ public class Directions {
         return String.join(", ", names);
     }
 
-    public static Optional<Direction> get(String directionName){
+    public static Optional<Direction> get(String directionName) {
         for (Direction direction : directions) {
-            if (direction.getName().equalsIgnoreCase(directionName)){
+            if (direction.getName().equalsIgnoreCase(directionName)) {
                 return Optional.of(direction);
             }
         }
         return Optional.empty();
     }
 
-    public static List<Direction> asList(){
+    public static List<Direction> asList() {
 
         return new ArrayList<>(directions);
     }
