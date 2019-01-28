@@ -19,7 +19,7 @@ class PathCheckerTest {
                 Arrays.asList(new North(), new South(), new East(), new West()));
 
         List<Direction> result = pathChecker.analyzePath(directions);
-        Optional<List<Direction>> expected = Optional.of(new ArrayList<>());
+        List<Direction> expected = new ArrayList<>();
         Assertions.assertEquals(expected, result);
     }
 
