@@ -33,6 +33,7 @@ public class North implements Direction {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(name);
     }
 }
