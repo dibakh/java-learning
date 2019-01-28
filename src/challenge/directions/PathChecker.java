@@ -1,19 +1,20 @@
 package challenge.directions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class PathChecker {
-    public Optional<List<Direction>> analyzePath(List<Direction> directions) {
+    public List<Direction> analyzePath(List<Direction> directions) {
 
         int listSize = directions.size();
 
         if (listSize == 0) {
-            return Optional.empty();
+            return new ArrayList<>();
         }
 
-        if (listSize == 1){
-            return Optional.of(directions);
+        if (listSize == 1) {
+            return directions;
         }
 
         int position = 0;
@@ -34,12 +35,13 @@ public class PathChecker {
             listSize = directions.size();
         }
 
-        return Optional.of(directions);
+        return directions;
     }
 
     private List<Direction> removeBothDirections(List<Direction> directions, int position) {
         directions.remove(position);
         directions.remove(position);
+
         return directions;
     }
 }
