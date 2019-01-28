@@ -24,4 +24,16 @@ public class South implements Direction {
         return "South";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        South south = (South) o;
+        return Objects.equals(name, south.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
