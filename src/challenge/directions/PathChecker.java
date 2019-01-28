@@ -10,10 +10,12 @@ public class PathChecker {
         int listSize = directions.size();
 
         if (listSize == 0) {
+
             return new ArrayList<>();
         }
 
         if (listSize == 1) {
+
             return directions;
         }
 
