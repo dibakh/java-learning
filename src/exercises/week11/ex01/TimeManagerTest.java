@@ -145,6 +145,11 @@ public class TimeManagerTest {
         LocalDateTime advBroadcast = arriveToHotel
                 .plusWeeks(1);
 
+        ZonedDateTime advBroadcastZoneInLondon = advBroadcast.atZone(london);
+        ZonedDateTime advBroadcastZoneInTokyo = advBroadcastZoneInLondon.withZoneSameInstant(tokyoZone);
+        LocalDateTime advBroadcastDateTimeInTokyo = advBroadcastZoneInTokyo.toLocalDateTime();
+        System.out.println("tima a week later in Tokyo: " + advBroadcastDateTimeInTokyo);
+        advBroadcastDateTimeInTokyo = LocalDateTime.of(advBroadcastDateTimeInTokyo.toLocalDate(), LocalTime.of(18, 30));
     }
 
     private void checkIfHeCanUseSauna(LocalDateTime arriveToSauna) {
