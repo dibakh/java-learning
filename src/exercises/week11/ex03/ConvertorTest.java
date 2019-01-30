@@ -1,13 +1,10 @@
 package exercises.week11.ex03;
 
-import jdk.Exported;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalTime;
-
-class convertorTest {
-    convertor convert = new convertor();
+class ConvertorTest {
+    Convertor convert = new Convertor();
 
     @Test
     void testOClock() {
