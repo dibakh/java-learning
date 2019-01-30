@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class TimeManagerTest {
     @Test
@@ -149,7 +150,32 @@ public class TimeManagerTest {
         ZonedDateTime advBroadcastZoneInTokyo = advBroadcastZoneInLondon.withZoneSameInstant(tokyoZone);
         LocalDateTime advBroadcastDateTimeInTokyo = advBroadcastZoneInTokyo.toLocalDateTime();
         System.out.println("tima a week later in Tokyo: " + advBroadcastDateTimeInTokyo);
-        advBroadcastDateTimeInTokyo = LocalDateTime.of(advBroadcastDateTimeInTokyo.toLocalDate(), LocalTime.of(18, 30));
+        LocalDateTime advertisementStartLondon= LocalDateTime.of(advBroadcastDateTimeInTokyo.toLocalDate(), LocalTime.of(18, 30));
+
+        System.out.println("\nhe should to turn on the TV at: " + advertisementStartLondon.toLocalTime());
+
+        //The advertisement lasts 29 seconds. Fifteen seconds afterwards his manager calls him on the phone to congratulate
+        // him for his popularity increase. At what time exactly does this happen? What day of the week is this?
+        LocalDateTime managerCallTime = advertisementStartLondon
+                .plusSeconds(29)
+                .plusSeconds(15);
+        System.out.println("\nhis manager called at: " + managerCallTime.toLocalTime() + " Uhr.it was " + managerCallTime.getDayOfWeek());
+
+        //How many days have passed by since he woke up at the beginning of the timetable?
+        Period periodSinceBeginning = Period.between(start.toLocalDate(), managerCallTime.toLocalDate());
+        int daysSinceBeginning = periodSinceBeginning.getDays();
+        System.out.println("\nDays since beginning: " + daysSinceBeginning);
+
+        //Mugatu gets paid for the timetable rights 1.39 Euro per minute of his privacy since the beginning of the
+        //timetable until the end, except for the time of the private call that Mugatu had with Katinka. How much
+        //is he paid for this reportage?
+
+        long totalMinutesSpent = LocalDateTime.of(start.toLocalDate(), start.toLocalTime()).until(managerCallTime
+                        .minusSeconds(546)
+                , ChronoUnit.MINUTES);
+        int moneyToPay = (int) (totalMinutesSpent * 1.39);
+        System.out.println("\nTotal Money to pay: " + moneyToPay + "€");
+
     }
 
     private void checkIfHeCanUseSauna(LocalDateTime arriveToSauna) {
