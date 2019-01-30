@@ -1,4 +1,4 @@
-package exercises.week11.timeToWord;
+package exercises.week11.ex03;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
