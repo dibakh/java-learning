@@ -1,4 +1,4 @@
-package exercises.week11.ex03;
+package exercises.week11.timeToWord;
 
 import java.util.Map;
 
@@ -20,10 +20,12 @@ public class Number {
     }
 
     private static int getModulDigit(int number) {
+
         return number % 10;
     }
 
     private static int getDivDigit(int number) {
+
         return number / 10 * 10;
     }
 }
