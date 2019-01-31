@@ -39,7 +39,4 @@ public class Convertor {
 
         return Number.toString(hour) + " O'CLOCK!";
     }
-
-
-
 }
