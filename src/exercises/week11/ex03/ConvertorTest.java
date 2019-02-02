@@ -10,14 +10,14 @@ class ConvertorTest {
     void testOClock() {
         String result = convert.toWords(12, 0) + " "
                 + convert.toMoment(12, 0);
-        Assertions.assertEquals("twelve O'CLOCK! noon", result);
+        Assertions.assertEquals("twelve O'Clock! noon", result);
     }
 
     @Test
     void testMidnight() {
         String result = convert.toWords(00, 00) + " "
                 + convert.toMoment(00, 00);
-        Assertions.assertEquals("It's midnight! midnight", result);
+        Assertions.assertEquals(" midnight", result);
     }
 
     @Test
