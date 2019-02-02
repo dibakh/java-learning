@@ -1,12 +1,10 @@
-package exercises.week11.ex04;
+package challenge.editWords;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WordTest {
     private List<String> expectedTrue = Arrays.asList("sahdr,sadr", "abc,abcd", "sahar,saar", "saar,sahar");
