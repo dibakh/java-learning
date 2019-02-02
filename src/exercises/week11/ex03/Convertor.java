@@ -7,23 +7,18 @@ import java.util.stream.Collectors;
 
 public class Convertor {
     private Map<Integer, String> numbersAndWords = Numbers.getNumbersAndWords();
+    private List<Time> times = Times.getTimes();
     private List<Moment> moments = Moments.getMoment();
 
     public String toWords(Integer hour, Integer minute) {
-
-        if (minute.equals(0)) {
-            return getOclock(hour);
-        }
-
-        if (minute <= 30) {
-            return Number.toString(minute) + " past " + Number.toString(hour);
-        }
-
-        int remainedMinute = 60 - minute;
-        return Number.toString(remainedMinute) + " to " + Number.toString(hour + 1);
+    return times.stream()
+            .filter(e -> e.isInRange(minute))
+            .map(e -> e.getHourInWord(hour,minute))
+            .limit(1)
+            .collect(Collectors.joining());
     }
 
-    public String toMoment(Integer hour, Integer minute){
+    public String toMoment(Integer hour, Integer minute) {
         LocalTime currentTime = LocalTime.of(hour, minute);
         return moments.stream()
                 .filter(e -> e.isBetween(currentTime))
