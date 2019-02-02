@@ -28,9 +28,9 @@ public class Convertor {
     }
 
     private String getOclock(Integer hour) {
-        if (hour.equals(0)) {
-            return "It's midnight!";
-        }
+//        if (hour.equals(0)) {
+//            return "It's midnight!";
+//        }
 
         return Number.toString(hour) + " O'CLOCK!";
     }
