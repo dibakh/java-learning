@@ -8,7 +8,7 @@ public class MinAfter30 implements Time {
     @Override
     public Boolean isInRange(Integer minute) {
 
-        return minute < 30;
+        return minute > 30;
     }
 
     @Override
