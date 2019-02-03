@@ -1,14 +1,12 @@
 package challenge.timeToWord;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class Numbers {
-    public static Map<Integer, String>  getNumbersAndWords() {
+    public static Map<Integer, String> getNumbersAndWords() {
         Map<Integer, String> numbers = new HashMap<>();
-        numbers.put(1, "zero");
+        numbers.put(0, "zero");
         numbers.put(1, "one");
         numbers.put(2, "two");
         numbers.put(3, "three");
