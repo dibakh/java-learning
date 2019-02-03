@@ -1,4 +1,4 @@
-package exercises.week11.ex03;
+package challenge.timeToWord;
 
 import java.util.Map;
 
