@@ -1,4 +1,4 @@
-package exercises.week11.week05;
+package exercises.week11.ex05;
 
 public interface Direction {
 
