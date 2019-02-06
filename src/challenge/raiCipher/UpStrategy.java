@@ -3,16 +3,15 @@ package challenge.raiCipher;
 import java.util.Optional;
 
 public class UpStrategy implements Strategy {
-    private Integer numberOfRow;
 
     public UpStrategy(Integer numberOfRow) {
-        this.numberOfRow = numberOfRow;
+        Integer numberOfRow1 = numberOfRow;
     }
 
     @Override
-    public Optional<Coordinate> getNext(Coordinate last) {
-        Integer column = last.getColumn();
-        Integer row = last.getRow();
+    public Optional<Coordinate> getNext(Coordinate coordinate) {
+        Integer column = coordinate.getColumn();
+        Integer row = coordinate.getRow();
         if (row <= 0) {
             return Optional.empty();
         }
