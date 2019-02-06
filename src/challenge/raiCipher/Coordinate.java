@@ -3,8 +3,8 @@ package challenge.raiCipher;
 import java.util.Objects;
 
 public class Coordinate {
-    Integer column;
-    Integer row;
+    private Integer column;
+    private Integer row;
 
     public Coordinate(Integer column, Integer row) {
         this.column = column;
