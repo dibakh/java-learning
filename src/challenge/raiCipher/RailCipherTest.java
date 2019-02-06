@@ -6,20 +6,17 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class RailCipherTest {
 
     @Test
     void getCoordinates() {
-        List<Coordinate> listOfCoordinate = new
-                RailCipher("HOSAMDIBAPAUL").getCoordinates(3);
-        for (Coordinate coordinate : listOfCoordinate) {
-            System.out.println("column: " + coordinate.getColumn()
-                    + " |  Row: " + coordinate.getRow());
-        }
+        List<Coordinate> actual = new RailCipher("HOSAMDIBAPAUL").getCoordinates(3);
+        List<Coordinate> expected = getExpectedCoordinates();
+        Assertions.assertEquals(expected, actual);
+    }
 
-        List<Coordinate> expected = Arrays.asList(new Coordinate(0, 0),
+    private List<Coordinate> getExpectedCoordinates() {
+        return Arrays.asList(new Coordinate(0, 0),
                 new Coordinate(1, 1),
                 new Coordinate(2, 2),
                 new Coordinate(3, 1),
@@ -31,10 +28,7 @@ class RailCipherTest {
                 new Coordinate(9, 1),
                 new Coordinate(10, 2),
                 new Coordinate(11, 1),
-                new Coordinate(12, 0),
-                new Coordinate(13, 1)
+                new Coordinate(12, 0)
         );
-
-        Assertions.assertEquals(expected, listOfCoordinate);
     }
 }
