@@ -12,9 +12,9 @@ public class DownStrategy implements Strategy {
     }
 
     @Override
-    public Optional<Coordinate> getNext(Coordinate last) {
-        Integer row = last.getRow();
-        Integer column = last.getColumn();
+    public Optional<Coordinate> getNext(Coordinate coordinate) {
+        Integer row = coordinate.getRow();
+        Integer column = coordinate.getColumn();
         if (row >= numberOfRow - 1) {
             return Optional.empty();
         }
