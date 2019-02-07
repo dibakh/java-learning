@@ -32,7 +32,7 @@ class WordTest {
 
     @Test
     void testInsert() {
-        Boolean result = word.compare("pale", "ple");
+        Boolean result = word.compare("pale", "elapo");
         Assertions.assertTrue(result);
     }
 
