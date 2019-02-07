@@ -1,4 +1,4 @@
-package challenge.Palindrome;
+package challenge.palindrome;
 
 import org.junit.jupiter.api.Test;
 
