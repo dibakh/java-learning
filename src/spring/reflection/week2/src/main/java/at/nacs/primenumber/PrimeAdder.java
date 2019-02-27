@@ -7,14 +7,13 @@ import java.util.stream.IntStream;
 
 @Component
 @Value
-public class PrimeGenerator {
+public class PrimeAdder {
 
     private Primes primes;
 
-    public int getNumbers(int i) {
+    public int getSum(int i) {
         return IntStream.iterate(2, e -> ++e)
                 .filter(e -> primes.isPrime(e))
-                .peek(e-> System.out.println(e))
                 .limit(i)
                 .sum();
     }
