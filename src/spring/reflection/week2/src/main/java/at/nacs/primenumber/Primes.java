@@ -1,12 +1,10 @@
 package at.nacs.primenumber;
 
-import lombok.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.IntStream;
 
 @Component
-@Value
 public class Primes {
     public boolean isPrime(int number) {
         if (number < 2) {
@@ -16,3 +14,4 @@ public class Primes {
                 .noneMatch(i -> number % i == 0);
     }
 }
+
