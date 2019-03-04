@@ -1,20 +1,20 @@
 package at.nacs.primenumber;
 
-import lombok.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.IntStream;
 
 @Component
-@Value
+@RequiredArgsConstructor
 public class PrimeAdder {
 
-    private Primes primes;
+    private final Primes primes;
 
-    public int getSum(int i) {
-        return IntStream.iterate(2, e -> ++e)
-                .filter(e -> primes.isPrime(e))
-                .limit(i)
+    public int getSum(int amount) {
+        return IntStream.iterate(2, e -> e + 1)
+                .filter(primes::isPrime)
+                .limit(amount)
                 .sum();
     }
 }
