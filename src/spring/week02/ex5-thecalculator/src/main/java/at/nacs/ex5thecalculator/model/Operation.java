@@ -1,6 +1,6 @@
-package at.nacs.ex5thecalculator.model;
+package at.nacs.ex5thecalculator.controller.operation;
 
-import at.nacs.ex5thecalculator.controller.Expression;
+
 import org.springframework.stereotype.Component;
 
 @Component
